@@ -1,10 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import useAxios from "@/@hooks/useAxios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 
 export interface IMainState {
   formData: IFormData,
-  updated: boolean
+  updated: boolean,
+  processing: boolean,
+  hasError: boolean
 }
 
 interface IFormData {
@@ -53,9 +56,23 @@ const initialForm: IMainState = {
     rolInCompany: "",
   },
   updated: false,
+  processing: false,
+  hasError: false,
 };
 
 const initialState: IMainState = initialForm;
+
+
+export const sendFormDataAction = createAsyncThunk(
+  'forms/create',
+  async (body: any) => {
+
+    const { callService } = useAxios();
+    return await callService({
+      url: body.url,
+    }).post(body.data);
+  }
+);
 
 export const mainSlice = createSlice({
   name: "main",
@@ -68,6 +85,21 @@ export const mainSlice = createSlice({
     resetFormData: (state) => {
       state = initialForm;
     },
+  },
+
+  extraReducers: (builder) => {
+
+    /* SHORTEN PASTE */
+    builder.addCase(sendFormDataAction.pending, (state) => {
+      state.processing = true;
+    });
+    builder.addCase(sendFormDataAction.rejected, (state) => {
+      state.processing = false;
+      state.hasError = true;
+    });
+    builder.addCase(sendFormDataAction.fulfilled, (state) => {
+      state.processing = false;
+    });
   },
 });
 

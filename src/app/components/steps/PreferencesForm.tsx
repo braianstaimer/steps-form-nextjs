@@ -3,10 +3,10 @@
 import { useForm } from "react-hook-form";
 import { Button, Field, Input, Label } from '@headlessui/react'
 import { useFormState } from "../FormContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
-import { useAppDispatch } from "@/@store";
-import { updateFormData } from "@/@store/main";
+import { useAppDispatch, useAppSelector } from "@/@store";
+import { sendFormDataAction, updateFormData } from "@/@store/main";
 
 type IFormValues = {
     notifications: boolean,
@@ -15,25 +15,38 @@ type IFormValues = {
 };
 
 export default function PreferencesForm() {
-    const { onHandleBack, onHandleSubmit, setFormData, formData } = useFormState();
+    const { onHandleBack, setFormData, formData } = useFormState();
     const { register, handleSubmit, formState: { isValid } } = useForm<IFormValues>({
         defaultValues: formData
     });
     const router = useRouter();
     const dispatch = useAppDispatch();
+    const formDataUpdatedState = useAppSelector((state) => state.main.updated);
+    const formDataErrorState = useAppSelector((state) => state.main.hasError);
 
 
     const [confirmSubmitError, setConfirmSubmitError] = useState('');
 
 
+    useEffect(() => {
+        if (formDataUpdatedState) router.push('/summary');
+    }, [formDataUpdatedState, router]);
+
+    useEffect(() => {
+        if (formDataErrorState) setConfirmSubmitError('Ha ocurrido un error, por favor revisa que la información esté correcta, he intente de nuevo');
+    }, [formDataErrorState]);
+
     async function onHandleFormSubmit(data: IFormValues) {
         setConfirmSubmitError('');
 
-        let result = await onHandleSubmit();
-        dispatch(updateFormData({ ...formData, ...data }));
+        let personalEndpoint = 'https://run.mocky.io/v3/892bc38b-c7e2-4432-a478-2eac4df57942';
+        let businessEndpoint = 'https://run.mocky.io/v3/e1724715-51d4-4ed2-b20f-cd3c59659e47';
+        let url;
+        if (formData.profileType === 'Personal') url = personalEndpoint;
+        else url = businessEndpoint;
 
-        if (result) router.push('/summary');
-        else setConfirmSubmitError('Ha ocurrido un error, por favor revisa que la información esté correcta, he intente de nuevo')
+        dispatch(sendFormDataAction({ url, data: { ...formData, ...data } }));
+        dispatch(updateFormData({ ...formData, ...data }));
     }
 
 
@@ -51,7 +64,7 @@ export default function PreferencesForm() {
             active: true,
         },
         {
-            name: 'otros',
+            name: 'Otros',
             active: true,
         },
     ]
@@ -87,10 +100,9 @@ export default function PreferencesForm() {
                             {
                                 servicesOptions.map((option, index) =>
                                     option.active ?
-                                        <div className="flex items-center gap-x-3">
+                                        <div className="flex items-center gap-x-3" key={index}>
                                             <Input
                                                 id={option.name}
-                                                key={index}
                                                 type="radio"
                                                 className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                                 value={option.name}

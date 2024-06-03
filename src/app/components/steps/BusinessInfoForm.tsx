@@ -84,10 +84,9 @@ export default function BusinessInfoForm() {
                             {
                                 sizeOptions.map((size, index) =>
                                     size.active ?
-                                        <div className="flex items-center gap-x-3">
+                                        <div className="flex items-center gap-x-3" key={index}>
                                             <Input
                                                 id={size.name}
-                                                key={index}
                                                 type="radio"
                                                 className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                                 value={size.name}

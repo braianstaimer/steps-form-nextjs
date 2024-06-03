@@ -1,10 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useState } from "react";
 
 
-import useAxios from '@/@hooks/useAxios';;
-
-
-const { callService } = useAxios();
 interface IFormContent {
     onHandleNext: () => void;
     onHandleBack: () => void;
@@ -12,7 +8,6 @@ interface IFormContent {
     step: number;
     formData: IFormData;
     setFormData: Dispatch<SetStateAction<IFormData>>;
-    onHandleSubmit: () => Promise<boolean>;
 }
 
 const FormContext = createContext<IFormContent>({
@@ -43,7 +38,6 @@ const FormContext = createContext<IFormContent>({
         rolInCompany: "",
     },
     setFormData: () => { },
-    onHandleSubmit: async () => false,
 });
 
 interface IProps {
@@ -108,26 +102,7 @@ export function FormProvider({ children }: IProps) {
         setStep(1);
     }
 
-
-    async function onHandleSubmit(): Promise<boolean> {
-        try {
-            let personalEndpoint = 'https://run.mocky.io/v3/892bc38b-c7e2-4432-a478-2eac4df57942';
-            let businessEndpoint = 'https://run.mocky.io/v3/e1724715-51d4-4ed2-b20f-cd3c59659e47';
-            let url;
-            let data = null;
-            if (formData.profileType === 'Personal') url = personalEndpoint;
-            else url = businessEndpoint;
-
-            data = await callService({ url: url, }).post(formData);
-
-            if (data.status === 'success') return true;
-            else return false;
-        } catch (err) {
-            return false;
-        }
-    }
-
-    return <FormContext.Provider value={{ onHandleBack, onHandleNext, step, formData, setFormData, onHandleSubmit, onHandleRestart }}>{children}</FormContext.Provider>
+    return <FormContext.Provider value={{ onHandleBack, onHandleNext, step, formData, setFormData, onHandleRestart }}>{children}</FormContext.Provider>
 }
 
 export function useFormState() {

@@ -136,10 +136,9 @@ export default function UserProfileForm() {
                             {
                                 accountTypes.map(type =>
                                     type.active ?
-                                        <div className="flex items-center gap-x-3">
+                                        <div className="flex items-center gap-x-3" key={type.name}>
                                             <Input
-                                                id={type.name}
-                                                key={type.name}
+                                                id={type.name}                                                
                                                 type="radio"
                                                 className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                                 value={type.name}
