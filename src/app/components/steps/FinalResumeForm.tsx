@@ -1,7 +1,6 @@
 'use client'
 
 import { useForm } from "react-hook-form";
-import { useFormState } from "../FormContext";
 import { useRouter } from 'next/navigation';
 import clsx from 'clsx'
 
@@ -13,6 +12,7 @@ type IFormValues = {
 
 import { useAppDispatch, useAppSelector } from "@/@store";
 import { resetFormData } from "@/@store/main";
+import { Button } from "@headlessui/react";
 
 
 export default function FinalResumeForm() {
@@ -44,12 +44,9 @@ export default function FinalResumeForm() {
                                     <span className="sr-only">Warning icon</span>
                                 </div>
                                 <div className="ms-3 text-sm font-normal">Primero debe completar el formulario.</div>
-                                <button type="button" className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-warning" aria-label="Close">
+                                <Button type="button" className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-warning" aria-label="Close">
                                     <span className="sr-only">Close</span>
-                                    <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                    </svg>
-                                </button>
+                                </Button>
                             </div>
                             :
                             <>
@@ -61,12 +58,9 @@ export default function FinalResumeForm() {
                                         <span className="sr-only">Check icon</span>
                                     </div>
                                     <div className="ms-3 text-sm font-normal">El formulario se ha enviado correctamente, acá te dejamos el resumen de la información.</div>
-                                    <button type="button" className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
+                                    <Button type="button" className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
                                         <span className="sr-only">Close</span>
-                                        <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                        </svg>
-                                    </button>
+                                    </Button>
                                 </div>
                                 <br />
 
@@ -117,12 +111,12 @@ export default function FinalResumeForm() {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button
+                <Button
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                     Enviar nuevo formuario
-                </button>
+                </Button>
             </div>
         </form>
     )

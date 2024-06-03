@@ -3,8 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useFormState } from "../FormContext";
 
-import clsx from 'clsx'
-import { Field, Label } from '@headlessui/react'
+import { Button, Field, Input, Label } from '@headlessui/react'
 
 type IFormValues = {
     fullName: string,
@@ -34,7 +33,7 @@ export default function PersonalInfoForm() {
                         <Field className="sm:col-span-4">
                             <Label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="fullName">Nombre completo</Label>
                             <div className="mt-2">
-                                <input
+                                <Input
                                     type='text'
                                     id='fullName'
                                     className="block w-full rounded-md py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -48,7 +47,7 @@ export default function PersonalInfoForm() {
                         <Field className="sm:col-span-4">
                             <Label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="email">Correo electronico</Label>
                             <div className="mt-2">
-                                <input
+                                <Input
                                     type='email'
                                     id='email'
                                     className="block w-full rounded-md py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -61,7 +60,7 @@ export default function PersonalInfoForm() {
                         <Field className="sm:col-span-4">
                             <Label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="phoneNumber">Teléfono</Label>
                             <div className="mt-2">
-                                <input
+                                <Input
                                     type='text'
                                     id='phoneNumber'
                                     className="block w-full rounded-md py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -76,17 +75,13 @@ export default function PersonalInfoForm() {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button
+                <Button
                     type="submit"
-                    className={
-                        clsx('rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600',
-                            //    !isValid && 'opacity-50 cursor-not-allowed'
-                        )
-                    }
+                    className="'rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'"
                     disabled={!isValid}
                 >
                     Continuar
-                </button>
+                </Button>
             </div>
         </form>
     )

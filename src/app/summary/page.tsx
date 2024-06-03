@@ -4,7 +4,6 @@ import {
   Disclosure,
 } from '@headlessui/react'
 import { FormProvider } from '../components/FormContext'
-import { FormStep } from '../components/FormStep'
 import FinalResumeForm from '../components/steps/FinalResumeForm'
 import ReduxProvider from "@/@store/redux-provider";
 

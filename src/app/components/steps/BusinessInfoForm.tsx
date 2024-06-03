@@ -1,11 +1,9 @@
 'use client'
 
 import { useForm } from "react-hook-form";
-import { Field, Label, } from '@headlessui/react'
+import { Button, Field, Input, Label, } from '@headlessui/react'
 import { useFormState } from "../FormContext";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
 
 type IFormValues = {
     companyName: string,
@@ -45,8 +43,20 @@ export default function BusinessInfoForm() {
     ]
 
     function onHandleFormSubmit(data: IFormValues) {
-        setFormData(prevFormData => ({ ...prevFormData, ...data }));
+        setFormData(prevFormData => ({
+            ...prevFormData, ...data,
+            birthDate: "",
+            gender: "",
+        }));
         onHandleNext();
+    }
+    function onHandleFormBack(data: IFormValues) {
+        onHandleBack();
+        setFormData(prevFormData => ({
+            ...prevFormData, ...data,
+            birthDate: "",
+            gender: "",
+        }));
     }
     return (
         <form onSubmit={handleSubmit(onHandleFormSubmit)}>
@@ -58,7 +68,7 @@ export default function BusinessInfoForm() {
                         <Field className="sm:col-span-4">
                             <Label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="fullName">Nombre de la compañía</Label>
                             <div className="mt-2">
-                                <input
+                                <Input
                                     type='text'
                                     id='fullName'
                                     className="block w-full rounded-md py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -68,16 +78,16 @@ export default function BusinessInfoForm() {
                             </div>
                         </Field>
 
-                        
+
                         <Field className="col-span-full">
                             <legend className="text-sm font-semibold leading-6 text-gray-900">Tamaño de la compañía</legend>
                             {
-                                sizeOptions.map(size =>
+                                sizeOptions.map((size, index) =>
                                     size.active ?
                                         <div className="flex items-center gap-x-3">
-                                            <input
+                                            <Input
                                                 id={size.name}
-                                                key={size.name}
+                                                key={index}
                                                 type="radio"
                                                 className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                                                 value={size.name}
@@ -94,7 +104,7 @@ export default function BusinessInfoForm() {
                         <Field className="sm:col-span-4">
                             <Label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="fullName">Rol en la compañía</Label>
                             <div className="mt-2">
-                                <input
+                                <Input
                                     type='text'
                                     id='fullName'
                                     className="block w-full rounded-md py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -108,16 +118,16 @@ export default function BusinessInfoForm() {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={onHandleBack}>
+                <Button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={handleSubmit(onHandleFormBack)}>
                     Regresar
-                </button>
-                <button
+                </Button>
+                <Button
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     disabled={!isValid}
                 >
                     Continuar
-                </button>
+                </Button>
             </div>
         </form >
     )

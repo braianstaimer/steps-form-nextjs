@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { useFormState } from "../FormContext";
-import {  Field, Label } from '@headlessui/react'
+import {  Button, Field, Input, Label } from '@headlessui/react'
 import {  useState } from "react";
 
 type IFormValues = {
@@ -64,6 +64,10 @@ export default function UserProfileForm() {
         }
     };
 
+    function onHandleFormBack(data: IFormValues) {
+        setFormData(prevFormData => ({ ...prevFormData, ...data }));
+        onHandleBack();
+    }
     return (
         <form onSubmit={handleSubmit(onHandleFormSubmit)} className="h-dvh">
             <div className="space-y-12">
@@ -76,7 +80,7 @@ export default function UserProfileForm() {
                             <div className="mt-2">
                                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
                                     <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">monoma.io/</span>
-                                    <input
+                                    <Input
                                         type="text"
                                         id="username"
                                         className="block w-full rounded-md py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -92,7 +96,7 @@ export default function UserProfileForm() {
                         <Field className="sm:col-span-4">
                             <Label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="password">Contraseña</Label>
                             <div className="mt-2">
-                                <input
+                                <Input
                                     type='password'
                                     id='password'
                                     className="block w-full rounded-md py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -109,7 +113,7 @@ export default function UserProfileForm() {
                         <Field className="sm:col-span-4">
                             <Label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="confirmPassword">Confirmar contraseña</Label>
                             <div className="mt-2">
-                                <input
+                                <Input
                                     type='password'
                                     id='confirmPassword'
                                     className="block w-full rounded-md py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
@@ -133,7 +137,7 @@ export default function UserProfileForm() {
                                 accountTypes.map(type =>
                                     type.active ?
                                         <div className="flex items-center gap-x-3">
-                                            <input
+                                            <Input
                                                 id={type.name}
                                                 key={type.name}
                                                 type="radio"
@@ -153,16 +157,16 @@ export default function UserProfileForm() {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={onHandleBack}>
+                <Button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={handleSubmit(onHandleFormBack)}>
                     Regresar
-                </button>
-                <button
+                </Button>
+                <Button
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     disabled={!isValid || !!confirmPasswordError}
                 >
                     Continuar
-                </button>
+                </Button>
             </div>
         </form >
     )

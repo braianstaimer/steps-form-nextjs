@@ -1,7 +1,7 @@
 'use client'
 
 import { useForm } from "react-hook-form";
-import { Field, Label, } from '@headlessui/react'
+import { Button, Field, Label, Select, } from '@headlessui/react'
 import { useFormState } from "../FormContext";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -34,8 +34,24 @@ export default function AdditionalPersonalInfoForm() {
     ]
 
     function onHandleFormSubmit(data: IFormValues) {
-        setFormData(prevFormData => ({ ...prevFormData, ...data }));
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            ...data,
+            companyName: "",
+            companySize: "",
+            rolInCompany: "",
+        }));
         onHandleNext();
+    }
+    function onHandleFormBack(data: IFormValues) {
+        setFormData(prevFormData => ({
+            ...prevFormData, 
+            ...data,
+            companyName: "",
+            companySize: "",
+            rolInCompany: "",
+        }));
+        onHandleBack();
     }
     return (
         <form onSubmit={handleSubmit(onHandleFormSubmit)}>
@@ -65,14 +81,14 @@ export default function AdditionalPersonalInfoForm() {
                         <Field className="sm:col-span-4">
                             <Label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="gender">Género</Label>
                             <div className="mt-2">
-                                <select
+                                <Select
                                     id="country"
                                     className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
                                     {...register("gender")}
                                     required
                                 >
                                     {genres.map(genre => genre.active ? <option key={genre.name}>{genre.name}</option> : null)}
-                                </select>
+                                </Select>
                             </div>
                         </Field>
                     </div>
@@ -80,16 +96,16 @@ export default function AdditionalPersonalInfoForm() {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={onHandleBack}>
+                <Button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={handleSubmit(onHandleFormBack)}>
                     Regresar
-                </button>
-                <button
+                </Button>
+                <Button
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     disabled={!isValid}
                 >
                     Continuar
-                </button>
+                </Button>
             </div>
         </form >
     )
