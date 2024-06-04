@@ -7,6 +7,7 @@ This project is a multi-step form built with Next.js. It demonstrates how to cre
 - **Next.js**: A React framework for server-side rendering and generating static websites.
 - **React**: A JavaScript library for building user interfaces.
 - **Tailwind CSS Modules**: For styling components in a modular and reusable way.
+- **Jest**: A JavaScript library for testing unit.
 
 ## Getting Started
 
@@ -41,6 +42,14 @@ Make sure you have Node.js and npm installed on your machine.
 ```sh
     npm run build
     #This will generate the production-ready files in the .next folder.
+```
+
+### Testing with Jest
+To test the use
+
+
+```sh
+npm run test
 ```
 
 ### Deploying with Netlify
