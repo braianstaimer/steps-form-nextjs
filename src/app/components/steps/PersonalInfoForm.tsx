@@ -15,7 +15,7 @@ export default function PersonalInfoForm() {
     const { onHandleNext, setFormData, formData } = useFormState();
     const { register, handleSubmit, formState: { isValid } } = useForm<IFormValues>({
         defaultValues: formData,
-        mode: 'onChange'
+        mode: 'onChange',
     });
 
     function onHandleFormSubmit(data: IFormValues) {
