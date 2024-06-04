@@ -4,7 +4,6 @@ import AddressInfoForm from "./steps/AddressInfoForm";
 import PersonalInfoForm from "./steps/PersonalInfoForm";
 import AdditionalPersonalInfoForm from "./steps/AdditionalPersonalInfoForm";
 import PreferencesForm from "./steps/PreferencesForm";
-import FinalResumeForm from "./steps/FinalResumeForm";
 import BusinessInfoForm from "./steps/BusinessInfoForm";
 
 export function FormStep() {
@@ -23,8 +22,6 @@ export function FormStep() {
             else return <BusinessInfoForm />;
         case 5:
             return <PreferencesForm />;
-        case 6:
-            return <FinalResumeForm />;
         default:
             return <PersonalInfoForm />;
     }
