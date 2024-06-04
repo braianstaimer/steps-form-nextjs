@@ -54,7 +54,7 @@ export default function AdditionalPersonalInfoForm() {
         onHandleBack();
     }
     return (
-        <form onSubmit={handleSubmit(onHandleFormSubmit)}>
+        <form onSubmit={handleSubmit(onHandleFormSubmit)} className="h-dvh">
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-2xl font-extrabold dark:text-white">Información personal adicional</h2>
