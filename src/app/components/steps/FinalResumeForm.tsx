@@ -66,8 +66,8 @@ export default function FinalResumeForm() {
 
                                 <h2 className="text-2xl font-extrabold dark:text-white">Información personal</h2>
                                 <p className="my-4 text-gray-500"><b>Nombre completo:</b> {formDataState.fullName}</p>
-                                <p className="my-4 text-gray-500"><b>Correo electronico:</b> {formDataState.email}</p>
-                                <p className="my-4 text-gray-500"><b>Télefono:</b> {formDataState.phoneNumber}</p>
+                                <p className="my-4 text-gray-500"><b>Correo electrónico:</b> {formDataState.email}</p>
+                                <p className="my-4 text-gray-500"><b>Teléfono:</b> {formDataState.phoneNumber}</p>
                                 <br />
                                 <h2 className="text-2xl font-extrabold dark:text-white">Dirección</h2>
                                 <p className="my-4 text-gray-500"><b>Dirección:</b> {formDataState.streetAddress}</p>
@@ -96,8 +96,8 @@ export default function FinalResumeForm() {
                                     : <>
                                         <h2 className="text-2xl font-extrabold dark:text-white">Información de Negocios</h2>
                                         <p className="my-4 text-gray-500"><b>Nombre de la compañía:</b> {formDataState.companyName}</p>
-                                        <p className="my-4 text-gray-500"><b>Tamaño de la compañia:</b> {formDataState.companySize}</p>
-                                        <p className="my-4 text-gray-500"><b>Rol en la compañia:</b> {formDataState.rolInCompany}</p>
+                                        <p className="my-4 text-gray-500"><b>Tamaño de la compañía:</b> {formDataState.companySize}</p>
+                                        <p className="my-4 text-gray-500"><b>Rol en la compañía:</b> {formDataState.rolInCompany}</p>
                                     </>}
                                 <br />
                                 <h2 className="text-2xl font-extrabold dark:text-white">Preferencias</h2>

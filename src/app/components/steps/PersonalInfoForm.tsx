@@ -45,7 +45,7 @@ export default function PersonalInfoForm() {
                         </Field>
 
                         <Field className="sm:col-span-4">
-                            <Label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="email">Correo electronico</Label>
+                            <Label className="block text-sm font-medium leading-6 text-gray-900" htmlFor="email">Correo electrónico</Label>
                             <div className="mt-2">
                                 <Input
                                     type='email'

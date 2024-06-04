@@ -117,7 +117,7 @@ export default function PreferencesForm() {
                         </Field>
 
                         <Field className="col-span-full">
-                            <legend className="text-sm font-semibold leading-6 text-gray-900">Terminos y condiciones</legend>
+                            <legend className="text-sm font-semibold leading-6 text-gray-900">Términos y condiciones</legend>
                             <div className="flex items-center gap-x-3">
                                 <Input
                                     id="termsAgreed"
