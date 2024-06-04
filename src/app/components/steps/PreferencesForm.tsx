@@ -22,7 +22,7 @@ export default function PreferencesForm() {
     const router = useRouter();
     const dispatch = useAppDispatch();
     const formDataUpdatedState = useAppSelector((state) => state.main.updated);
-    const formDataErrorState = useAppSelector((state) => state.main.hasError);
+    const formDataErrorState = useAppSelector((state) => state.main.hasError);    
 
 
     const [confirmSubmitError, setConfirmSubmitError] = useState('');

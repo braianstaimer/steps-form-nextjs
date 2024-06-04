@@ -83,7 +83,10 @@ export const mainSlice = createSlice({
       state.updated = true;
     },
     resetFormData: (state) => {
-      state = initialForm;
+      state.formData = initialForm.formData;
+      state.updated = initialForm.updated;
+      state.hasError = initialForm.hasError;
+      state.processing = initialForm.processing;
     },
   },
 
