@@ -81,12 +81,6 @@ export default function FinalResumeForm() {
                                 <p className="my-4 text-gray-500"><b>Confirmar contraseña:</b> {formDataState.confirmPassword}</p>
                                 <p className="my-4 text-gray-500"><b>Perfil de usuario:</b> {formDataState.profileType}</p>
                                 <br />
-                                <h2 className="text-2xl font-extrabold dark:text-white">Detalles de la cuenta</h2>
-                                <p className="my-4 text-gray-500"><b>Usuario:</b> {formDataState.username}</p>
-                                <p className="my-4 text-gray-500"><b>Contraseña:</b> {formDataState.password}</p>
-                                <p className="my-4 text-gray-500"><b>Confirmar contraseña:</b> {formDataState.confirmPassword}</p>
-                                <p className="my-4 text-gray-500"><b>Perfil de usuario:</b> {formDataState.profileType}</p>
-                                <br />
                                 {formDataState.profileType === 'Personal'
                                     ? <>
                                         <h2 className="text-2xl font-extrabold dark:text-white">Información personal adicional</h2>
